@@ -50,8 +50,7 @@
                             <span class="label-title"><i class='bx bx-lock'></i></span>
                         </div>
 
-                        <!-- <button type="submit" class="register-btn">Registrarte</button> -->
-                        <button type="submit" value="add" name="action" class="register-btn">Guardar</button>
+                        <button type="submit" value="add" name="action" class="register-btn">Registate</button>
 
                         <p class="mb-0">Ya tienes cuenta? <a href="..\..\index.php">Inicia Sesión</a></p>
                     </form>

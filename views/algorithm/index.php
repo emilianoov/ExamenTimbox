@@ -93,9 +93,10 @@
             </div>
             <div class="card-body">
                 <h1>Verificador de Palíndromos</h1>
-                <label for="words">Ingrese las palabras separadas por comas:</label>
-                <input type="text" id="words" name="words">
-                <button onclick="verificarPalindromos()">Verificar Palíndromos</button>
+                <label for="words">Ingrese las palabras separadas por comas:</label><br>
+                <label for="words">(Las palabras no tienen que tener ninguna separación)</label>
+                <input class="form-control" type="text" id="words" name="words"><br>
+                <button class="btn btn-primary" onclick="verificarPalindromos()">Verificar Palíndromos</button>
                 <div id="result"></div>
             </div>
         </div>
@@ -118,7 +119,7 @@
         const wordsInput = document.getElementById("words");
         const resultDiv = document.getElementById("result");
 
-        const words = wordsInput.value.trim();
+        const words = wordsInput.value.toUpperCase();
 
         fetch('../../controller/algoritmo.php', {
                 method: 'POST',
