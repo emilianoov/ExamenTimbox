@@ -159,7 +159,7 @@
                 contentType: false,
                 processData: false,
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                     Swal.fire({
                         title: 'Se Edito Correctamente!',
                         text: 'Reinicia Sesión Para Notar Los Cambios',

@@ -17,7 +17,7 @@
 
                     <h2>Registrate</h2>
 
-                    <form  onsubmit="return validarFormulario()" method="post" id="person_form" >
+                    <form method="post" id="person_form" >
                         <input type="hidden" id="id_person" name="id_person">
                         <input type="hidden" id="phone_person" name="phone_person">
                         <input type="hidden" id="web_person" name="web_person">
@@ -50,7 +50,8 @@
                             <span class="label-title"><i class='bx bx-lock'></i></span>
                         </div>
 
-                        <button type="submit" class="register-btn">Registrarte</button>
+                        <!-- <button type="submit" class="register-btn">Registrarte</button> -->
+                        <button type="submit" value="add" name="action" class="register-btn">Guardar</button>
 
                         <p class="mb-0">Ya tienes cuenta? <a href="..\..\index.php">Inicia Sesión</a></p>
                     </form>
@@ -72,24 +73,19 @@
 
     function init(){
         $('#person_form').on("submit",function(e){
-            validarFormulario(e);
+            guardaryeditar(e);
         });
     }
 
-    function validarFormulario(e) {
+    function guardaryeditar(e) {
         e.preventDefault();
         var formData = new FormData($("#person_form")[0]);
 
-        var nombreInput = document.getElementById("name_person")
         var rfcInput = document.getElementById("rfc_person");
-        var correoInput = document.getElementById("email_person");
         var contrasenaInput = document.getElementById("pass_person");
         var confirmaContrasenaInput = document.getElementById("passwordConfirm");
 
-        var name_person = nombreInput.value.trim();
         var rfc_person = rfcInput.value.trim().toUpperCase();
-        var email_person = correoInput.value.trim();
-
         var pass_person = contrasenaInput.value;
         var confirmaContrasena = confirmaContrasenaInput.value;
 
@@ -101,10 +97,8 @@
                 'La estructura del RFC no es la correcta.',
                 'warning'
             )
-            return false;
-        }
-
-        if (pass_person !== confirmaContrasena) {
+            return false
+        }else if (pass_person !== confirmaContrasena) {
             Swal.fire(
                 'ERROR!',
                 'Las contraseñas no coinciden.',
@@ -112,19 +106,21 @@
             )
             return false;
         }
-        
-        $.ajax({
-            url: "../../controller/person.php?op=guardaryeditar",
-            type:"POST",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(data){
-                console.log(data);
-                alert(data);
-                location.reload();
-            }
-        });
+        else{
+            $.ajax({
+                url: "../../controller/person.php?op=guardaryeditar",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    // console.log(data);
+                    alert(data);
+                    location.reload();
+                    
+                }
+            });
+        }
     }
     
     init();
